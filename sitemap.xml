@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jodavid.github.io/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/categories/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/categories/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/posts/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/posts/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/tags/r/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/tags/r/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/categories/r/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/categories/r/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/tags/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/tags/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/tags/contrab/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/tags/contrab/</loc>
     <lastmod>2021-02-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/tags/linux/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/tags/linux/</loc>
     <lastmod>2021-02-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/posts/refresh-de-um-script-r-com-crontab/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/posts/refresh-de-um-script-r-com-crontab/</loc>
     <lastmod>2021-02-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/tags/covid/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/tags/covid/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/categories/leaflet/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/categories/leaflet/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/tags/shapes/</loc>
+    <loc>https://jodavid.github.io/jodavid-blog/tags/shapes/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url>
 </urlset>
