@@ -2,26 +2,26 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Blog do Joda</title>
-    <link>https://smigle-hugo-theme.netlify.app/categories/</link>
+    <link>https://jodavid.github.io/categories/</link>
     <description>Recent content in Categories on Blog do Joda</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://smigle-hugo-theme.netlify.app/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jodavid.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>R</title>
-      <link>https://smigle-hugo-theme.netlify.app/categories/r/</link>
+      <link>https://jodavid.github.io/categories/r/</link>
       <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://smigle-hugo-theme.netlify.app/categories/r/</guid>
+      <guid>https://jodavid.github.io/categories/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>leaflet</title>
-      <link>https://smigle-hugo-theme.netlify.app/categories/leaflet/</link>
+      <link>https://jodavid.github.io/categories/leaflet/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://smigle-hugo-theme.netlify.app/categories/leaflet/</guid>
+      <guid>https://jodavid.github.io/categories/leaflet/</guid>
       <description></description>
     </item>
     

@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Blog do Joda</title>
-    <link>https://smigle-hugo-theme.netlify.app/tags/r/</link>
+    <link>https://jodavid.github.io/tags/r/</link>
     <description>Recent content in R on Blog do Joda</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://smigle-hugo-theme.netlify.app/tags/r/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jodavid.github.io/tags/r/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>utilizando uma barra de progressão em laços/funções no R</title>
-      <link>https://smigle-hugo-theme.netlify.app/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</link>
+      <link>https://jodavid.github.io/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</link>
       <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://smigle-hugo-theme.netlify.app/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</guid>
+      <guid>https://jodavid.github.io/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</guid>
       <description>Em vários casos temos laços que não temos o conhecimento do progresso do processo, se está no início, se já está próximo de acabar, então neste post será abordado de uma forma simples como adicionar uma barra de progressão em seus laços e consequetemente acompanhar o andamento de seus processos sejam elas apenas os laços ou dentro de funções.
 Antes de mostrar a solução com a barra de progressão, é possível levantar o questionamento de existe uma outra forma de acompanhar o progresso do processo.</description>
     </item>
     
     <item>
       <title>refresh de um script R com Crontab</title>
-      <link>https://smigle-hugo-theme.netlify.app/posts/refresh-de-um-script-r-com-crontab/</link>
+      <link>https://jodavid.github.io/posts/refresh-de-um-script-r-com-crontab/</link>
       <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://smigle-hugo-theme.netlify.app/posts/refresh-de-um-script-r-com-crontab/</guid>
+      <guid>https://jodavid.github.io/posts/refresh-de-um-script-r-com-crontab/</guid>
       <description>Este post será breve e com um objetivo específico. Vamos criar um refessh em um script R com o Crontab, entretanto, esse refresh como mencionado nesse post, nada mais é do que um agendamento de tarefas, no qual o Crontab irá executar a tarefa agendada, toda vez que a condição especificada ocorer.
 O que é Crontab? “O Cron é utilizado para agendar tarefas recorrentes, as tarefas são chamadas de cronjobs e são gerenciadas pelo crontab (tabela do cron).</description>
     </item>
     
     <item>
       <title>gráfico no R utilizando Malhas e Leaflet</title>
-      <link>https://smigle-hugo-theme.netlify.app/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</link>
+      <link>https://jodavid.github.io/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://smigle-hugo-theme.netlify.app/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</guid>
+      <guid>https://jodavid.github.io/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</guid>
       <description>Neste post vamos abordar a criação de um gráfico utilizando malhas digitais e Leaflet com intuito de analisar visualmente um problema em questão que envolva análise com mapas e dados de área.
 Dados de área: são dados obtidos quando a ocorrência de um fenômeno em estudo se dá em uma área geográfica aleatória, por exemplo, áreas de incidência de alguma endemia ou epidemia. Na prática, estes dados são associados a levantamentos de recursos humanos, como censos e estatísticas da saúde.</description>
     </item>
