@@ -1,0 +1,195 @@
+---
+title: "gerando um mapa com geobr no R"
+author: ''
+date: '2021-03-08'
+slug: []
+categories: ["R","geobr"]
+tags: ["R", "geobr"]
+comments: no
+showcomments: yes
+showpagemeta: yes
+---
+
+Neste Post vamos gerar dois mapas com pacote `geobr`, com intiuto de mostrar
+o potêncial do pacote que pode gerar análises muito maiores do que os mostrados
+nesse post.
+
+> geobr é um pacote computacional para download de conjuntos de dados espaciais oficiais do Brasil. O pacote inclui uma ampla gama de dados geoespaciais em formato de geopacote (como shapefiles), disponíveis em várias escalas geográficas e por vários anos com atributos harmonizados, projeção e topologia.
+
+O texto acima foi retirado do site do [github](https://github.com/) do pacote: [https://github.com/ipeaGIT/geobr](https://github.com/ipeaGIT/geobr).
+
+
+Como exemplo simples, vamos gerar um primeiro mapas de frequências utilizando os estados do Brasil, para isso vamos gerar uma amostra de tamanho 1.000 (escolhido aleatóriamente) dos 27 estados do país.
+
+Lista dos estados do Brasil (BR):
+
+- Acre - AC;
+- Alagoas - AL;
+- Amapá - AP;
+- Amazonas - AM;
+- Bahia - BA;
+- Ceará - CE;
+- Distrito Federal - DF;
+- Espírito Santo - ES;
+- Goiás - GO;
+- Maranhão - MA;
+- Mato Grosso - MT;
+- Mato Grosso do Sul - MS;
+- Minas Gerais - MG;
+- Pará - PA;
+- Paraíba - PB;
+- Paraná - PR;
+- Pernambuco - PE;
+- Piauí - PI;
+- Roraima - RR;
+- Rondônia - RO;
+- Rio de Janeiro - RJ;
+- Rio Grande do Norte - RN;
+- Rio Grande do Sul - RS;
+- Santa Catarina - SC;
+- São Paulo - SP;
+- Sergipe - SE;
+- Tocantins - TO.
+
+```{r}
+# Estados
+estados <- c("AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES",
+             "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR",
+             "PE", "PI", "RR", "RO", "RJ", "RN", "RS", "SC",
+             "SP", "SE", "TO")
+# Verificando se existem 27 estados
+length(estados)
+
+# Criando uma amostra de tamanho 1.000
+
+amostra <- sample(x = estados, size = 1000, replace = TRUE)
+
+# Verificando as frequências em cada estado
+
+table(amostra)
+
+```
+
+Em geral ficou uma amostra uniforme, em torno da frequẽncia 35. Vamos agora chamar a biblioteca e gerar o mapa usando o `geobr`.
+```{r, eval=F}
+# Instalando o 'geobr'
+remotes::install_github("ipeaGIT/geobr", subdir = "r-package")
+```
+
+No Debian/Ubuntu, foi necessário instalar a `libudunits2-dev` no terminal do linux;
+
+```{bash, eval=F}
+# No Teminal Linux
+apt install libudunits2-dev
+
+```
+
+Após a instalação da biblioteca no Sistema operacional, foi utilizado o comando para instalar o pacote novamente e se tudo ocorreu como esperado, o pacote foi instalado com sucesso!
+
+Abaixo vamos seguir com o código da geração do mapa
+
+```{r, message=FALSE, warning=FALSE}
+# Lendo as bibliotecas
+library(geobr) # Necessárias para os dados dos mapas
+library(dplyr) # Necessária para manipulação dos dados
+
+# Convertendo a amostra em tibble
+amostra <- as_tibble(amostra)
+
+# Agrupando os dados dos estados
+dados_estados <- amostra %>%
+                  mutate(abbrev_state = factor(value)) %>% 
+                  group_by(abbrev_state) %>% 
+                  summarise(n = n())
+
+# Fazendo left_join das informações do geobr com os dados
+dados_mapa <- read_state(year=2019, showProgress = FALSE) %>% 
+              left_join(dados_estados)
+
+
+```
+
+Gerando o mapa utilizando a frequência gerada pelo prórpio `ggplot`:
+
+```{r, warning=FALSE}
+# Pacote ggplot2
+library(ggplot2)
+
+
+# Código do MAPA
+dados_mapa %>%
+  ggplot() +
+  geom_sf(aes(fill = n)) +
+  labs(title = "Mapa Brasil", fill = "Frequência")+
+  theme_minimal()+
+  theme(axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank())
+
+```
+
+
+Criando um intervalo e fazendo o gráfico de acordo com a legenda criada:
+
+```{r, warning=F, message=F}
+# Descobrindo o maximo e minimo para definir a quantidade de intervalos
+max(dados_mapa$n) # Calculando o máximo
+min(dados_mapa$n) # Calculando o mínimo
+
+max(dados_mapa$n) - min(dados_mapa$n) # Diferença
+
+# Por questão de facilidade vamos dividir em 3 categorias:
+# 1 - Frequência de menos de 20;
+# 2 - Frequência de 20 a 30;
+# 3 - Frequência de 30 ou mais;
+
+#Criando os Intervalos para a Legenda
+classes = c(-Inf, 20, 31, Inf)
+classes_plot <- findInterval(dados_mapa$n,classes)
+
+# Criar legenda
+legenda =  c('menos de 20',
+             '20 |-- 30 ',
+             'mais de 30')
+
+cores = c("#e9e57f",
+          "#cda300",
+          "#a46500")
+
+
+# Adicionando a coluna classes_plot no tibble dados_mapa
+
+dados_mapa <- dados_mapa %>% 
+              mutate(classes_plot = factor(classes_plot))
+
+# Código do MAPA
+dados_mapa %>%
+  ggplot() +
+  geom_sf(aes(fill = classes_plot), color = "black") +
+  labs(title = "Mapa Brasil", fill = "Frequência Criada")+
+  scale_fill_manual(labels = legenda,
+                    values = cores)+ 
+  theme_minimal()+
+  theme(axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank())
+
+
+```
+
+Com esses códigos são possíveis a criação de mapas utilizando frequências usando o pacote `geobr`.
+
+
+Fontes:
+
+[Instagram: programando_em_r](https://www.instagram.com/p/CMDauKFgsJo/?utm_source=ig_web_copy_link)
+
+
+
+<br/>
+<br/>
+<br/>
+
+#### "Post gerado com framework HUGO ([http://gohugo.io/](http://gohugo.io/)), R Markdown ([http://rmarkdown.rstudio.com/](http://rmarkdown.rstudio.com/)), no qual os resultados são gerados na geração da página."

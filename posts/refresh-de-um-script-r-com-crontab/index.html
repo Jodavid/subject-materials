@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>refresh de um script R com Crontab | Blog do Joda</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="https://smigle-hugo-theme.netlify.app/">
+      <img
+        class="icon"
+        src="/images/brandIcon.svg"
+      />
+    </a>
+    <div class="text">
+      <a href="https://smigle-hugo-theme.netlify.app/"><h1>Blog do Joda</h1></a>
+      <h3>Textos diversos sobre programação, estatística e curiosidades</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categorias</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1 class="title">refresh de um script R com Crontab</h1>
+      
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2021-02-22</time>
+    <span>in</span>
+    
+      <a href="/categories/r">R</a>
+  </strong>
+  <span> • 511 words</span>
+  <span> • 3 minute read</span>
+  
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/r">R</a>, 
+        <a href="/tags/contrab">contrab</a>, 
+        <a href="/tags/linux">linux</a>
+    </div>
+  
+</div>
+
+      <div class="content">
+
+
+<p>Este post será breve e com um objetivo específico. Vamos criar um refessh em um script <code>R</code> com o <code>Crontab</code>, entretanto, esse <code>refresh</code> como mencionado nesse post, nada mais é do que um agendamento de tarefas, no qual o <code>Crontab</code> irá executar a tarefa agendada, toda vez que a condição especificada ocorer.</p>
+<div id="o-que-é-crontab" class="section level2">
+<h2>O que é Crontab?</h2>
+<p>“O Cron é utilizado para agendar tarefas recorrentes, as tarefas são chamadas de cronjobs e são gerenciadas pelo crontab (tabela do cron).</p>
+<p>Esta ferramenta vem instalada em diversas distribuições Linux, mas caso o Cron não esteja instalado na sua máquina é possível instalar através do comando abaixo (No Ubuntu)“:</p>
+<pre><code># apt-get install cron</code></pre>
+<p>Para criar uma nova tarefa usamos o comando <strong>crontab -e</strong> que irá abrir o arquivo do cron para inserir o agendamento para o usuário atual.</p>
+<pre><code># crontab -e</code></pre>
+<ul>
+<li>Se necessário usar o <strong>sudo</strong> nos comandos acima.</li>
+</ul>
+<p>O crontab possui seis colunas, que correspondem aos minutos, horas, dias, meses, semanas e, por fim, aos comandos que serão executados.</p>
+<p>Abaixo segue detalhes sobre eles:</p>
+<ul>
+<li><em>Minuto:</em> Valores de 0 a 59 ou *</li>
+<li><em>Hora:</em> Valores de 0 a 23 ou *</li>
+<li><em>Dia:</em> Valores de 1 a 31 ou *</li>
+<li><em>Mês:</em> Valores de 1 a 12, jan a dec ou *</li>
+<li><em>Semana:</em> 0 a 6, sun a sat ou * (0 e 7 representa Domingo)</li>
+<li><em>Comando:</em> O comando a ser executado ou script</li>
+</ul>
+<p>O caractere asterisco (*) significa do primeiro ao último.</p>
+<p>Com o arquivo do <code>Crontab</code> aberto vamos adicionar a seginte linha
+<code>*/15 * * * * Rscript script.R</code>, após o Rscript coloca todo o caminho até o arquivo a ser executado, e nos minutos foram colocados ’*/15’ para o arquivo ser executado a cada 15 minutos.</p>
+<pre><code># 
+# For example, you can run a backup of all your user accounts
+# at 5 a.m every week with:
+# 0 5 * * 1 tar -zcf /var/backups/home.tgz /home/
+# 
+# For more information see the manual pages of crontab(5) and cron(8)
+# 
+# m h  dom mon dow   command
+
+*/15 * * * * Rscript &#39;script.R&#39;
+</code></pre>
+</div>
+<div id="script-r" class="section level2">
+<h2>Script R</h2>
+<p>Vamos utilizar um script R que envia uma mensagem para o Telegram toda vez que for executado.
+Para isso, vou utilizar um Bot que criei no post anterior: <a href="https://jodavid.github.io/post/construindo-um-chatbot-para-telegram-com-r/">https://jodavid.github.io/post/construindo-um-chatbot-para-telegram-com-r/</a></p>
+<p><strong>script.R:</strong></p>
+<pre class="r"><code># Pacote Necessário: telegram.bot
+
+# Token do Bot:
+bot &lt;- telegram.bot::Bot(token = &quot;123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11&quot;)
+
+# Adicionando id do Recepetor (abaixo como descobrir seu id no Telegram)
+chatid &lt;- &quot;574895214&quot; #id aleatório aqui
+
+# Enviando o horário atual
+bot$sendMessage(chat_id = chatid,
+                text = format(Sys.time(), &quot;%X&quot;)
+                )</code></pre>
+<p><br/ ></p>
+</div>
+<div id="como-descobrir-seu-id" class="section level2">
+<h2>Como descobrir seu id</h2>
+<ol style="list-style-type: decimal">
+<li>Acesse esse link pelo Telegram: <a href="https://t.me/my_id_bot">https://t.me/my_id_bot</a>;</li>
+<li>Utiliza o <code>/start</code>;</li>
+<li>Seu <code>id</code> do Telegram vai aparecer na tela de conversa.</li>
+</ol>
+<hr/>
+<p><br/ ></p>
+<p>Com esse código acima, estando correto o token do bot e o id do receptor, a mensagem chegará no Telegram corretamente.</p>
+<p><strong>OBS.:</strong> É necessário interagir com o bot após a criação dele, para que as mensagens cheguem corretamente. Não fazendo isso, o bot não consegue enviar mensagens ao usuário.</p>
+<p><br/>
+<br/></p>
+<p>Fontes:</p>
+<p><a href="https://medium.com/totvsdevelopers/entendendo-o-crontab-607bc9f00ed3">https://medium.com/totvsdevelopers/entendendo-o-crontab-607bc9f00ed3</a></p>
+<p><br/>
+<br/>
+<br/></p>
+<div id="post-gerado-com-framework-hugo-httpgohugo.io-r-markdown-httprmarkdown.rstudio.com-no-qual-os-resultados-são-gerados-na-geração-da-página." class="section level4">
+<h4>“Post gerado com framework HUGO (<a href="http://gohugo.io/">http://gohugo.io/</a>), R Markdown (<a href="http://rmarkdown.rstudio.com/">http://rmarkdown.rstudio.com/</a>), no qual os resultados são gerados na geração da página.”</h4>
+</div>
+</div>
+</div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+  <p class="copyright">
+    Copyright © 2023
+    <a href="https://smigle-hugo-theme.netlify.app/"><strong>Jodavid Ferreira</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

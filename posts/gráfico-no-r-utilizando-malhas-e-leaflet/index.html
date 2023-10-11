@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>gráfico no R utilizando Malhas e Leaflet | Blog do Joda</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="https://smigle-hugo-theme.netlify.app/">
+      <img
+        class="icon"
+        src="/images/brandIcon.svg"
+      />
+    </a>
+    <div class="text">
+      <a href="https://smigle-hugo-theme.netlify.app/"><h1>Blog do Joda</h1></a>
+      <h3>Textos diversos sobre programação, estatística e curiosidades</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categorias</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1 class="title">gráfico no R utilizando Malhas e Leaflet</h1>
+      
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2021-01-17</time>
+    <span>in</span>
+    
+      <a href="/categories/r">R</a>, 
+      <a href="/categories/leaflet">leaflet</a>
+  </strong>
+  <span> • 1148 words</span>
+  <span> • 6 minute read</span>
+  
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/r">R</a>, 
+        <a href="/tags/covid">covid</a>, 
+        <a href="/tags/shapes">shapes</a>
+    </div>
+  
+</div>
+
+      <div class="content">
+
+
+<p>Neste post vamos abordar a criação de um gráfico utilizando malhas digitais e <code>Leaflet</code> com intuito de analisar visualmente um problema em questão que envolva análise com <strong>mapas</strong> e <strong>dados de área</strong>.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Dados de área:</strong> <em>são dados obtidos quando a ocorrência de um fenômeno em estudo se dá em uma área geográfica aleatória, por exemplo, áreas de incidência de alguma endemia ou epidemia. Na prática, estes dados são associados a levantamentos de recursos humanos, como censos e estatísticas da saúde. Referem-se então, a indivíduos localizados em pontos específicos do espaço, mas que por razões de confidencialidade ou de tratamento estatístico são agregados em unidades de análise (geo-objeto), usualmente delimitados por polígonos fechados (setores censitários, zonas de endereçamento postal, municípios). Como exemplo desses dados, temos: dados de saúde, sócio-econômico, demográficos.</em></li>
+</ol>
+<p>Um exemplo do gráfico que será gerado pode ser visualizado logo abaixo.</p>
+<iframe width="650" height="400" src="../covid/plot_estado_site.html" frameborder="0" allowfullscreen>
+</iframe>
+<p><br /></p>
+<p>A malha digital necessáriapara estudo que possui os polígonos fechados que delimitam os municípios descritos na explicação anterior foi obtida no site <a href="https://www.ipea.gov.br/ipeageo/malhas.html">https://www.ipea.gov.br/ipeageo/malhas.html</a>.
+Nesse site é encontrado a malha utilizada do estado da Paraíba e várias outras malhas dos demais estados do país.</p>
+<p>Como variável de estudo, vamos utilzar os dados de <code>COVID-19</code> acumulados do dia 25.02.2020 até o dia 17.01.2021, e esses dados foram obtidos através do pacote <code>coronabr</code>.
+Com este pacote é possível fazer download e visualizar os dados dos casos diários de coronavírus (COVID-19) disponibilizados por diferentes fontes:</p>
+<ul>
+<li><a href="http://plataforma.saude.gov.br/novocoronavirus/#COVID-19-brazil">Ministério da Saúde</a>;</li>
+<li><a href="https://brasil.io/dataset/covid19/caso">Brasil I/O</a>;</li>
+<li><a href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins University</a>.</li>
+</ul>
+<p>Neste post vamos utilizar os dados do <a href="https://brasil.io/dataset/covid19/caso"><em>Brasil I/O</em></a>, mais detalhes são encontrados no link <a href="https://github.com/liibre/coronabr">https://github.com/liibre/coronabr</a>.</p>
+<p>Para criação do gráfico, é necessário instalar alguns pacotes, o <code>dplyr</code>, <code>leaflet</code>,<code>sp</code> e <code>rgdal</code>. Neste último é possível que você enfrente algum erro de bibliotecas, isto porque é necessário possuir essas bibliotecas no sistema operacional, as bibliotecas são <code>libgdal-dev</code> e <code>libproj-dev</code>, se tiver problemas, detalhes podem ser encontrados no link <a href="https://philmikejones.me/tutorials/2014-07-14-installing-rgdal-in-r-on-linux/">https://philmikejones.me/tutorials/2014-07-14-installing-rgdal-in-r-on-linux/</a>. Entretanto se usar sistema Debian ou Ubuntu, pode instalá-los abrindo um terminal (CTRL + ALT + T) e digitando (ou copie e cole):</p>
+<pre class="eval"><code>sudo apt install libgdal-dev libproj-dev</code></pre>
+<p>A seguir é encontrado o Script, entretanto
+vou dividí-lo o script em partes facilitar a explicação e entendimento do mesmo.</p>
+<p>O início do script para gerar o gráfico é ler os pacotes necessários, após este passo, iniciamos crinado uma variável <code>malha</code> que ler o arquivo descompactado referente a malha da Paraíba, feito download no link <a href="https://www.ipea.gov.br/ipeageo/arquivos/malhas/PB_Mun97_region.zip">https://www.ipea.gov.br/ipeageo/arquivos/malhas/PB_Mun97_region.zip</a>, a variável <code>nome</code> foi criada e foi atribuida a ela os nomes dos municípios do estado da PB existentes na variável da <code>malha</code>, este passo é importante, pois para que o número de casos seja alocado no espaço geográfico correto, a posição do nome do número de casos deve estar na mesma posição que o nome do município existente na malha <em>(ex.: Se João Pessoa é encontrado na posição 92, o número de casos para João Pessoa também deve estar na posição 92)</em>.</p>
+<pre class="r"><code># Os pacotes necessários
+library(dplyr)
+library(leaflet)
+library(rgdal)
+library(sp)
+library(coronabr)
+
+# Instalar pacote do devtools
+ install.packages(&quot;devtools&quot;)
+
+# Instalar pacote do coronabr
+ devtools::install_github(&quot;liibre/coronabr&quot;)
+
+# Ler pacote do coronabr
+library(coronabr)
+
+# Lendo o arquivo da malha digital
+malha &lt;- rgdal::readOGR(&quot;PB_Mun97_region.shp&quot;,encoding = &quot;latin1&quot;)
+
+# Obtendo os nomes dos municípios
+nomes &lt;- malha$MUNIC_PIO</code></pre>
+<p><br/>
+A função <code>get_corona_br()</code> obtém os dados do COVID-19 e este dados foram alocados na variável <code>dados_br</code>.
+Foi observado que a o nome dos municípios no banco dados <code>dados_br</code> possui a primeira letra maiúscula e as demais minúsculas, entretanto os nomes dos munícipios obtidos na malha possui todas as letras maiúsculas, e como o <code>R</code> é <em>case sensitive</em> para string, ou seja, maiúsculas e minúsculas são considerados diferentes, então para suprir esse problema foi utilizado a função <code>toupper</code> para deixar os nomes das cidades todas em maiúsculas no banco <code>dados_br</code>, com a intenção de não ocorrer erros no momento do cruzamento dos dados.</p>
+<pre class="r"><code># Obtendo os dados
+dados_br &lt;- get_corona_br()
+
+# Convertendo todas as letras dos nomes da cidade em maiúsculos
+dados_br &lt;-
+  dados_br %&gt;% mutate(city = toupper(city))</code></pre>
+<p>O banco <code>dados_br</code> retorna dados de todo o Brasil, através da função <code>filter</code> foi possível determinar um subconjunto, ou seja, um novo banco de dados apenas com os municípios da Paraíba (PB), esse novo banco foi denominado <code>dados_br2</code>, e foi criado um novo banco com o intuito de não alterar o banco original.
+Em seguida foram utilizados as funções <code>select</code>, <code>group_by</code> e <code>summarise</code> para que os casos fossem agrupados apenas por municípios, pois nesse caso nosso gráfico não será diário e sim um gráfico de casos acumulados do início do registro (25.02.2020 - data obtida com um <code>min(dados_br$date)</code>) de casos até o dia de hoje (17.01.2021).</p>
+<pre class="r"><code># Filtando os municípios da PB
+dados_br2 &lt;- 
+  dados_br %&gt;% filter(city %in% nomes &amp; state == &quot;PB&quot;)
+
+# Agrupando os dados por cidade
+dados_br2 &lt;- dados_br2 %&gt;% 
+  select(c(city,new_confirmed )) %&gt;% 
+  group_by(city) %&gt;% 
+  summarise(n = sum(new_confirmed))</code></pre>
+<p>Com o casos obtidos agrupados por município, vamos juntar essa base de dados com a base de dados da malha, para que possamos ordenar os municípios na mesma ordem da malha. Para isto, foi utilizado a função <code>left_join</code>, que junta bancos de dados de acordo com uma determinada coluna definida, no nosso caso a coluna definida foi <code>city</code> que representa os nomes dos municípios.</p>
+<p>Para facilitar a manipulação no momento do gráfico, foi definida uma variável (<code>casos_covid</code>) apenas com a quantidade de casos. Em seguida foram criados uma variável de <code>classes</code>, <code>legendas</code> e <code>cores</code> que são variáveis utilizadas na geração do gráfico diferenciando as áreas visualmente.</p>
+<p>Por fim, após essa manipulação para deixar os dados adequados, o código que gera o gráfico é mostrado utilizando a função <code>leaflet</code> e seus argumentos. <strong>O gráfico gerado desse código apresentado é a figura encontrada no início do post.</strong></p>
+<pre class="r"><code># Vamos associar os casos com a ordem da malha
+# convertendo &#39;nomes&#39; para utilizar o left_join
+nomes &lt;- data.frame(city=nomes)
+dados_grafico &lt;- left_join(nomes,dados_br2,by = &quot;city&quot;)
+
+
+# Variável de Interesse
+casos_covid &lt;- dados_grafico$n
+
+#Criando os Intervalos para a Legenda
+classes = c(-Inf, 209, 414,619,819,1029, 1234, Inf)
+classes_plot &lt;- findInterval(casos_covid,classes)
+
+# Criar legenda
+legenda =  c(&#39;0 |-- 210&#39;,
+             &#39;210 |-- 415&#39;,
+             &#39;415 |-- 620&#39;,
+             &#39;620 |-- 820&#39;,
+             &#39;820 |-- 1030&#39;,
+             &#39;1030 |-- 1235&#39;,
+             &#39;1235 ou mais&#39;)
+
+cores = c(&quot;#ffffff&quot;,
+          &quot;#f1f1d1&quot;,
+          &quot;#e9e57f&quot;,
+          &quot;#dcca03&quot;,
+          &quot;#cda300&quot;,
+          &quot;#a46500&quot;,
+          &quot;#593216&quot;)
+
+# Gerando o grafico
+plot &lt;- leaflet(malha) %&gt;%
+  addTiles() %&gt;%
+  addPolygons(stroke = T,
+              smoothFactor = 0.3,
+              color = &quot;black&quot;,opacity = 1,weight = 1,
+              fillOpacity = 1,
+              fillColor = cores[classes_plot],
+              label = ~paste0(nomes2, &quot;: &quot;, format(casos_covid))) %&gt;%
+  addLegend(position = &quot;topright&quot;,colors = cores, labels = legenda, title = &quot;Quantidade de Casos&quot; )
+
+plot</code></pre>
+<p>Se desejar salvar seu gráfico gerado, isso pode ser feito de duas formas, ou salvar em <code>.png</code>ou salvar em <code>.html</code>, que fica mais interessante, pois possui interação com usuário como o gráfico mostrado no início deste post. A seguir é mostrado as duas formas de salvar:</p>
+<pre class="r"><code># Salvar em PNG
+library(mapview)
+mapshot(plot, file=&quot;grafico.png&quot;)
+
+# Salvar em HTML
+library(htmlwidgets)
+saveWidget(plot, file=&quot;grafico.html&quot;)</code></pre>
+<p><br/>
+<br/>
+<br/></p>
+<div id="post-gerado-com-framework-hugo-httpgohugo.io-r-markdown-httprmarkdown.rstudio.com-no-qual-os-resultados-são-gerados-na-geração-da-página." class="section level4">
+<h4>“Post gerado com framework HUGO (<a href="http://gohugo.io/">http://gohugo.io/</a>), R Markdown (<a href="http://rmarkdown.rstudio.com/">http://rmarkdown.rstudio.com/</a>), no qual os resultados são gerados na geração da página.”</h4>
+</div>
+</div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+  <p class="copyright">
+    Copyright © 2023
+    <a href="https://smigle-hugo-theme.netlify.app/"><strong>Jodavid Ferreira</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

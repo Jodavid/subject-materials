@@ -1,0 +1,179 @@
+---
+title: utilizando uma barra de progressão em laços/funções no R
+author: ''
+date: '2021-08-05'
+slug: []
+categories: [R]
+tags: [R]
+comments: no
+showcomments: yes
+showpagemeta: yes
+---
+
+
+Em vários casos temos laços que não temos o conhecimento do progresso do processo, se está no início, se já está próximo de acabar, então neste post será abordado de uma forma simples como adicionar uma barra de progressão em seus laços e consequetemente acompanhar o andamento de seus processos sejam elas apenas os laços ou dentro de funções.
+
+Antes de mostrar a solução com a barra de progressão, é possível levantar o questionamento de existe uma outra forma de acompanhar o progresso do processo. A resposta é sim, várias formas, como por exemplo a utilizanção da função `print()` entretanto não é uma forma muito elegante, tendo em vista que serão impressos na tela as saídas em várias linhas como mostrado no exemplo abaixo:
+
+```{r}
+# ---------------
+# Calculando o valor fatorial de 5
+# x: variável a ser armazenada o valor final
+# ---------------
+x = 1;
+# ----
+
+for( i in 1:5 ){
+  
+  # ------
+  x = x*i;
+  # ------  
+  
+  # ------
+  print(i);
+  # ------
+  
+}
+
+# ----
+print(paste("Valor de x é:", x))
+```
+
+No caso acima temos que para acompanhar em qual iteração estávamos, foi preciso adicionar um `print()` no índice `i`, para acompanhar a sua evolução do 1 até o valor 5. Entretanto é possível observar que cada valor de `i` foi impresso em uma linha diferente.
+
+No caso da utilização da **barra de progressão**, vamos utilizar o pacote `progress` no qual o código fonte pode ser encontrado no seguinte link: https://github.com/r-lib/progress.
+
+É possível instalar o pacote da seguinte maneira:
+
+```{r, eval=F}
+install.packages("progress")
+```
+
+
+Como forma de utilização, vamos utilizar o exemplo acima, entrentanto agora com a inclusão da **barra de progressão**.
+
+```{}
+# ---------------
+# x: variável a ser armazenada o valor final
+# ---------------
+x = 1;
+# ----
+
+# ------
+# Chamando o pacote
+# ------
+library(progress)
+# ------
+
+# ------
+# Criando a barra de progressão
+# ------
+# n: tamanho do laço
+n <-  5
+#----
+pb <- progress_bar$new(total = n)
+
+for (i in 1:n) {
+  
+  # ------
+  x = x*i;
+  # ------  
+  
+  # ------
+  pb$tick();
+  # ------
+  
+  
+}
+```
+
+```{}
+[==========================================================-------------]  81%
+```
+
+```{r}
+# ----
+print(paste("Valor de x é:", x))
+```
+
+O valor de `n` encontrado na função `progress_bar` é o tamanho do laço, para que a **barra de progressão** seja construída do tamanho correto.
+
+Se a barra de progressão nos exemplos acima, você pode aumentar o tamanho do laço e/ou adicionar um `Sys.sleep(1)`, para que o laço demore 1 segundo entre as iterações, como mostrado abaixo:
+
+```{r}
+# ---------------
+# x: variável a ser armazenada o valor final
+# ---------------
+x = 1;
+# ----
+
+# ------
+# Chamando o pacote
+# ------
+library(progress)
+# ------
+
+# ------
+# Criando a barra de progressão
+# ------
+# n: tamanho do laço
+n <-  5
+#----
+pb <- progress_bar$new(total = n)
+
+for (i in 1:n) {
+  
+  # ------
+  x = x*i;
+  # ------  
+  
+  # ------
+  pb$tick();
+  # ------
+  
+  Sys.sleep(1)
+  
+}
+```
+
+
+
+ou
+
+
+
+```{r}
+# ---------------
+# x: variável a ser armazenada o valor final
+# ---------------
+x = 1;
+# ----
+
+# ------
+# Chamando o pacote
+# ------
+library(progress)
+# ------
+
+# ------
+# Criando a barra de progressão
+# ------
+pb <- progress_bar$new(total = 10000)
+
+for (i in 1:10000) {
+  
+  # ------
+  x = x*i;
+  # ------  
+  
+  # ------
+  pb$tick();
+  # ------
+
+}
+```
+
+É importante deixar claro que o local no qual você coloca o `pb$tick()` não é pre-definido, aqui eu coloquei ele após a tarefa desejada, mas ele também pode ser a antes da tarefa, entretanto, deve estar dentro do laço (`for()`).
+
+Dessa forma, você já deve ser capaz de conseguir utilizar a barra de progressão dentro de seus laços e consequentemente, acompanhar o andamento de suas funções, se elas estão próximas de concluir ou não.
+

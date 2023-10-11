@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title>utilizando uma barra de progressão em laços/funções no R | Blog do Joda</title>
+    
+  
+  <link rel="stylesheet" href="/css/reset.css"/>
+  <link rel="stylesheet" href="/css/font.css"/>
+  <link rel="stylesheet" href="/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="https://smigle-hugo-theme.netlify.app/">
+      <img
+        class="icon"
+        src="/images/brandIcon.svg"
+      />
+    </a>
+    <div class="text">
+      <a href="https://smigle-hugo-theme.netlify.app/"><h1>Blog do Joda</h1></a>
+      <h3>Textos diversos sobre programação, estatística e curiosidades</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/"><b>Home</b></a>
+      
+         | 
+        <a href="/posts/"><b>Posts</b></a>
+      
+         | 
+        <a href="/categories/"><b>Categorias</b></a>
+      
+         | 
+        <a href="/tags/"><b>Tags</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1 class="title">utilizando uma barra de progressão em laços/funções no R</h1>
+      
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>2021-08-05</time>
+    <span>in</span>
+    
+      <a href="/categories/r">R</a>
+  </strong>
+  <span> • 645 words</span>
+  <span> • 4 minute read</span>
+  
+  
+    <div>
+      <span>Tags:</span>
+      
+        <a href="/tags/r">R</a>
+    </div>
+  
+</div>
+
+      <div class="content">
+
+
+<p>Em vários casos temos laços que não temos o conhecimento do progresso do processo, se está no início, se já está próximo de acabar, então neste post será abordado de uma forma simples como adicionar uma barra de progressão em seus laços e consequetemente acompanhar o andamento de seus processos sejam elas apenas os laços ou dentro de funções.</p>
+<p>Antes de mostrar a solução com a barra de progressão, é possível levantar o questionamento de existe uma outra forma de acompanhar o progresso do processo. A resposta é sim, várias formas, como por exemplo a utilizanção da função <code>print()</code> entretanto não é uma forma muito elegante, tendo em vista que serão impressos na tela as saídas em várias linhas como mostrado no exemplo abaixo:</p>
+<pre class="r"><code># ---------------
+# Calculando o valor fatorial de 5
+# x: variável a ser armazenada o valor final
+# ---------------
+x = 1;
+# ----
+
+for( i in 1:5 ){
+  
+  # ------
+  x = x*i;
+  # ------  
+  
+  # ------
+  print(i);
+  # ------
+  
+}</code></pre>
+<pre><code>## [1] 1
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5</code></pre>
+<pre class="r"><code># ----
+print(paste(&quot;Valor de x é:&quot;, x))</code></pre>
+<pre><code>## [1] &quot;Valor de x é: 120&quot;</code></pre>
+<p>No caso acima temos que para acompanhar em qual iteração estávamos, foi preciso adicionar um <code>print()</code> no índice <code>i</code>, para acompanhar a sua evolução do 1 até o valor 5. Entretanto é possível observar que cada valor de <code>i</code> foi impresso em uma linha diferente.</p>
+<p>No caso da utilização da <strong>barra de progressão</strong>, vamos utilizar o pacote <code>progress</code> no qual o código fonte pode ser encontrado no seguinte link: <a href="https://github.com/r-lib/progress" class="uri">https://github.com/r-lib/progress</a>.</p>
+<p>É possível instalar o pacote da seguinte maneira:</p>
+<pre class="r"><code>install.packages(&quot;progress&quot;)</code></pre>
+<p>Como forma de utilização, vamos utilizar o exemplo acima, entrentanto agora com a inclusão da <strong>barra de progressão</strong>.</p>
+<pre><code># ---------------
+# x: variável a ser armazenada o valor final
+# ---------------
+x = 1;
+# ----
+
+# ------
+# Chamando o pacote
+# ------
+library(progress)
+# ------
+
+# ------
+# Criando a barra de progressão
+# ------
+# n: tamanho do laço
+n &lt;-  5
+#----
+pb &lt;- progress_bar$new(total = n)
+
+for (i in 1:n) {
+  
+  # ------
+  x = x*i;
+  # ------  
+  
+  # ------
+  pb$tick();
+  # ------
+  
+  
+}</code></pre>
+<pre><code>[==========================================================-------------]  81%</code></pre>
+<pre class="r"><code># ----
+print(paste(&quot;Valor de x é:&quot;, x))</code></pre>
+<pre><code>## [1] &quot;Valor de x é: 120&quot;</code></pre>
+<p>O valor de <code>n</code> encontrado na função <code>progress_bar</code> é o tamanho do laço, para que a <strong>barra de progressão</strong> seja construída do tamanho correto.</p>
+<p>Se a barra de progressão nos exemplos acima, você pode aumentar o tamanho do laço e/ou adicionar um <code>Sys.sleep(1)</code>, para que o laço demore 1 segundo entre as iterações, como mostrado abaixo:</p>
+<pre class="r"><code># ---------------
+# x: variável a ser armazenada o valor final
+# ---------------
+x = 1;
+# ----
+
+# ------
+# Chamando o pacote
+# ------
+library(progress)
+# ------
+
+# ------
+# Criando a barra de progressão
+# ------
+# n: tamanho do laço
+n &lt;-  5
+#----
+pb &lt;- progress_bar$new(total = n)
+
+for (i in 1:n) {
+  
+  # ------
+  x = x*i;
+  # ------  
+  
+  # ------
+  pb$tick();
+  # ------
+  
+  Sys.sleep(1)
+  
+}</code></pre>
+<p>ou</p>
+<pre class="r"><code># ---------------
+# x: variável a ser armazenada o valor final
+# ---------------
+x = 1;
+# ----
+
+# ------
+# Chamando o pacote
+# ------
+library(progress)
+# ------
+
+# ------
+# Criando a barra de progressão
+# ------
+pb &lt;- progress_bar$new(total = 10000)
+
+for (i in 1:10000) {
+  
+  # ------
+  x = x*i;
+  # ------  
+  
+  # ------
+  pb$tick();
+  # ------
+
+}</code></pre>
+<p>É importante deixar claro que o local no qual você coloca o <code>pb$tick()</code> não é pre-definido, aqui eu coloquei ele após a tarefa desejada, mas ele também pode ser a antes da tarefa, entretanto, deve estar dentro do laço (<code>for()</code>).</p>
+<p>Dessa forma, você já deve ser capaz de conseguir utilizar a barra de progressão dentro de seus laços e consequentemente, acompanhar o andamento de suas funções, se elas estão próximas de concluir ou não.</p>
+</div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+  <p class="copyright">
+    Copyright © 2023
+    <a href="https://smigle-hugo-theme.netlify.app/"><strong>Jodavid Ferreira</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Blog do Joda</title>
+    <link>https://smigle-hugo-theme.netlify.app/tags/</link>
+    <description>Recent content in Tags on Blog do Joda</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>pt-BR</language>
+    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://smigle-hugo-theme.netlify.app/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>R</title>
+      <link>https://smigle-hugo-theme.netlify.app/tags/r/</link>
+      <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://smigle-hugo-theme.netlify.app/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>contrab</title>
+      <link>https://smigle-hugo-theme.netlify.app/tags/contrab/</link>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://smigle-hugo-theme.netlify.app/tags/contrab/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://smigle-hugo-theme.netlify.app/tags/linux/</link>
+      <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://smigle-hugo-theme.netlify.app/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>covid</title>
+      <link>https://smigle-hugo-theme.netlify.app/tags/covid/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://smigle-hugo-theme.netlify.app/tags/covid/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shapes</title>
+      <link>https://smigle-hugo-theme.netlify.app/tags/shapes/</link>
+      <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://smigle-hugo-theme.netlify.app/tags/shapes/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

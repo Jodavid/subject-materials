@@ -1,0 +1,171 @@
+---
+title: gráfico no R utilizando Malhas e Leaflet
+author: ''
+date: '2021-01-17'
+slug: []
+categories: ["R","leaflet"]
+tags: ["R", "covid", "shapes"]
+comments: no
+showcomments: yes
+showpagemeta: yes
+---
+
+Neste post vamos abordar  a criação de um gráfico  utilizando malhas digitais e `Leaflet` com intuito de analisar visualmente um problema em questão que envolva análise com **mapas** e **dados de área**.
+
+1. **Dados de área:** *são dados obtidos quando a ocorrência de um fenômeno em estudo se dá em uma área geográfica aleatória, por exemplo, áreas de incidência de alguma endemia ou epidemia. Na prática, estes dados são associados a levantamentos de recursos humanos, como censos e estatísticas da saúde. Referem-se então, a indivíduos localizados em pontos específicos do espaço, mas que por razões de confidencialidade ou de tratamento estatístico são agregados em unidades de análise (geo-objeto), usualmente delimitados por polígonos fechados (setores censitários, zonas de endereçamento postal, municípios). Como exemplo desses dados, temos: dados de saúde, sócio-econômico, demográficos.*
+
+Um exemplo do gráfico que será gerado pode ser visualizado logo abaixo.
+
+<iframe width="650" height="400" src="../covid/plot_estado_site.html" frameborder="0" allowfullscreen></iframe>
+
+<br />
+
+A malha digital necessáriapara estudo que possui os polígonos fechados que delimitam os municípios descritos na explicação anterior foi obtida no site [https://www.ipea.gov.br/ipeageo/malhas.html](https://www.ipea.gov.br/ipeageo/malhas.html).
+Nesse site é encontrado a malha utilizada do estado da Paraíba e várias outras malhas dos demais estados do país.
+
+Como variável de estudo, vamos utilzar os dados de `COVID-19` acumulados do dia 25.02.2020 até o dia 17.01.2021, e esses dados foram obtidos através do pacote `coronabr`.
+Com este pacote é possível fazer download e visualizar os dados dos casos diários de coronavírus (COVID-19) disponibilizados por diferentes fontes:
+
+* [Ministério da Saúde](http://plataforma.saude.gov.br/novocoronavirus/#COVID-19-brazil);
+* [Brasil I/O](https://brasil.io/dataset/covid19/caso);
+* [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19).
+
+Neste post vamos utilizar os dados do [*Brasil I/O*](https://brasil.io/dataset/covid19/caso), mais detalhes são encontrados no link [https://github.com/liibre/coronabr](https://github.com/liibre/coronabr).
+
+Para criação do gráfico, é necessário instalar alguns pacotes, o `dplyr`, `leaflet`,`sp` e `rgdal`. Neste último é possível que você enfrente algum erro de bibliotecas, isto porque é necessário possuir essas bibliotecas no sistema operacional, as bibliotecas são `libgdal-dev` e `libproj-dev`, se tiver problemas, detalhes podem ser encontrados no link [https://philmikejones.me/tutorials/2014-07-14-installing-rgdal-in-r-on-linux/](https://philmikejones.me/tutorials/2014-07-14-installing-rgdal-in-r-on-linux/). Entretanto se usar sistema Debian ou Ubuntu, pode instalá-los abrindo um terminal (CTRL + ALT + T) e digitando (ou copie e cole):
+
+```{eval = F}
+sudo apt install libgdal-dev libproj-dev
+```
+
+A seguir é encontrado o Script, entretanto
+vou dividí-lo o script em partes facilitar a explicação e entendimento do mesmo.
+
+O início do script para gerar o gráfico é ler os pacotes necessários, após este passo,  iniciamos crinado uma variável `malha` que ler o arquivo descompactado referente a malha da Paraíba, feito download no link [https://www.ipea.gov.br/ipeageo/arquivos/malhas/PB_Mun97_region.zip](https://www.ipea.gov.br/ipeageo/arquivos/malhas/PB_Mun97_region.zip), a variável `nome` foi criada e foi atribuida a ela os nomes dos municípios do estado da PB existentes na variável da `malha`, este passo é importante, pois para que o número de casos seja alocado no espaço geográfico correto, a posição do nome do número de casos deve estar na mesma posição que o nome do município existente na malha *(ex.: Se João Pessoa é encontrado na posição 92, o número de casos para João Pessoa também deve estar na posição 92)*.
+
+```{r eval=F}
+# Os pacotes necessários
+library(dplyr)
+library(leaflet)
+library(rgdal)
+library(sp)
+library(coronabr)
+
+# Instalar pacote do devtools
+ install.packages("devtools")
+
+# Instalar pacote do coronabr
+ devtools::install_github("liibre/coronabr")
+
+# Ler pacote do coronabr
+library(coronabr)
+
+# Lendo o arquivo da malha digital
+malha <- rgdal::readOGR("PB_Mun97_region.shp",encoding = "latin1")
+
+# Obtendo os nomes dos municípios
+nomes <- malha$MUNIC_PIO
+
+```
+
+<br/>
+A função `get_corona_br()` obtém os dados do COVID-19 e este dados foram alocados na variável `dados_br`.
+Foi observado que a o nome dos municípios no banco dados `dados_br` possui a primeira letra maiúscula e as demais minúsculas, entretanto os nomes dos munícipios obtidos na malha possui todas as letras maiúsculas, e como o `R` é *case sensitive* para string, ou seja, maiúsculas e minúsculas são considerados diferentes, então para suprir esse problema foi utilizado a função `toupper` para deixar os nomes das cidades todas em maiúsculas no banco `dados_br`, com a intenção de não ocorrer erros no momento do cruzamento dos dados.
+
+```{r eval=F}
+# Obtendo os dados
+dados_br <- get_corona_br()
+
+# Convertendo todas as letras dos nomes da cidade em maiúsculos
+dados_br <-
+  dados_br %>% mutate(city = toupper(city))
+
+```
+
+O banco `dados_br` retorna dados de todo o Brasil, através da função `filter` foi possível determinar um subconjunto, ou seja, um novo banco de dados apenas com os municípios da Paraíba (PB), esse novo banco foi denominado `dados_br2`, e foi criado um novo banco com o intuito de não alterar o banco original.
+Em seguida foram utilizados as funções `select`, `group_by` e `summarise` para que os casos fossem agrupados apenas por municípios, pois nesse caso nosso gráfico não será diário e sim um gráfico de casos acumulados do início do registro (25.02.2020 - data obtida com um `min(dados_br$date)`) de casos até o dia de hoje (17.01.2021).
+
+
+```{r eval=F}
+
+# Filtando os municípios da PB
+dados_br2 <- 
+  dados_br %>% filter(city %in% nomes & state == "PB")
+
+# Agrupando os dados por cidade
+dados_br2 <- dados_br2 %>% 
+  select(c(city,new_confirmed )) %>% 
+  group_by(city) %>% 
+  summarise(n = sum(new_confirmed))
+```
+
+
+Com o casos obtidos agrupados por município, vamos juntar essa base de dados com a base de dados da malha, para que possamos ordenar os municípios na mesma ordem da malha. Para isto, foi utilizado a função `left_join`, que junta bancos de dados de acordo com uma determinada coluna definida, no nosso caso a coluna definida foi `city` que representa os nomes dos municípios.
+
+Para facilitar a manipulação no momento do gráfico, foi definida uma variável (`casos_covid`) apenas com a quantidade de casos. Em seguida foram criados uma variável de `classes`, `legendas` e `cores` que são variáveis utilizadas na geração do gráfico diferenciando as áreas visualmente.
+
+Por fim, após essa manipulação para deixar os dados adequados, o código que gera o gráfico é mostrado utilizando a função `leaflet` e seus argumentos. **O gráfico gerado desse código apresentado é a figura encontrada no início do post.**
+
+```{r eval=F}
+# Vamos associar os casos com a ordem da malha
+# convertendo 'nomes' para utilizar o left_join
+nomes <- data.frame(city=nomes)
+dados_grafico <- left_join(nomes,dados_br2,by = "city")
+
+
+# Variável de Interesse
+casos_covid <- dados_grafico$n
+
+#Criando os Intervalos para a Legenda
+classes = c(-Inf, 209, 414,619,819,1029, 1234, Inf)
+classes_plot <- findInterval(casos_covid,classes)
+
+# Criar legenda
+legenda =  c('0 |-- 210',
+             '210 |-- 415',
+             '415 |-- 620',
+             '620 |-- 820',
+             '820 |-- 1030',
+             '1030 |-- 1235',
+             '1235 ou mais')
+
+cores = c("#ffffff",
+          "#f1f1d1",
+          "#e9e57f",
+          "#dcca03",
+          "#cda300",
+          "#a46500",
+          "#593216")
+
+# Gerando o grafico
+plot <- leaflet(malha) %>%
+  addTiles() %>%
+  addPolygons(stroke = T,
+              smoothFactor = 0.3,
+              color = "black",opacity = 1,weight = 1,
+              fillOpacity = 1,
+              fillColor = cores[classes_plot],
+              label = ~paste0(nomes2, ": ", format(casos_covid))) %>%
+  addLegend(position = "topright",colors = cores, labels = legenda, title = "Quantidade de Casos" )
+
+plot
+
+```
+
+Se desejar salvar seu gráfico gerado, isso pode ser feito de duas formas, ou salvar em `.png`ou salvar em `.html`, que fica mais interessante, pois possui interação com usuário como o gráfico mostrado no início deste post. A seguir é mostrado as duas formas de salvar:
+
+```{r eval=F}
+# Salvar em PNG
+library(mapview)
+mapshot(plot, file="grafico.png")
+
+# Salvar em HTML
+library(htmlwidgets)
+saveWidget(plot, file="grafico.html")
+```
+
+<br/>
+<br/>
+<br/>
+
+#### "Post gerado com framework HUGO ([http://gohugo.io/](http://gohugo.io/)), R Markdown ([http://rmarkdown.rstudio.com/](http://rmarkdown.rstudio.com/)), no qual os resultados são gerados na geração da página."
