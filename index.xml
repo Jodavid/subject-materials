@@ -2,75 +2,67 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Materiais de Ensino</title>
-    <link>https://jodavid.github.io/subject-materials/</link>
+    <link>http://localhost:4321/subject-materials/</link>
     <description>Recent content on Materiais de Ensino</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo 0.125.1</generator>
     <language>pt-BR</language>
-    <lastBuildDate>Mon, 15 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://jodavid.github.io/subject-materials/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Apr 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:4321/subject-materials/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Material Disciplina de Introdução à Ciência de Dados</title>
-      <link>https://jodavid.github.io/subject-materials/posts/introducaoads/</link>
+      <link>http://localhost:4321/subject-materials/posts/introducaoads/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://jodavid.github.io/subject-materials/posts/introducaoads/</guid>
-      <description>Essa página tem como objetivo deixar disponível o material da disciplina de Introdução à Ciência de Dados ministrada pelo Profº Jodavid Ferreira no curso de Estatística na Universidade Federal de Pernambuco - UFPE.
-  Aula 01 - Apresentação da disciplina (slide)
-  Aula 02 - Introdução a Inteligência Artificial (slide)
-  Aula 03 - Conceitos de Ciência de Dados (slide)
-    Listas de Exercício  Lista 00 - Conceitos de IA e Ciência de Dados Lista 01 - Exercícios de Python Lista 02 Lista 03 Lista 04    Projeto de Pesquisa  Normas do Trabalho     Obs.</description>
+      <guid>http://localhost:4321/subject-materials/posts/introducaoads/</guid>
+      <description>Essa página tem como objetivo deixar disponível o material da disciplina de Introdução à Ciência de Dados ministrada pelo Profº Jodavid Ferreira no curso de Estatística na Universidade Federal de Pernambuco - UFPE.&#xA;Aula 01 - Apresentação da disciplina (slide)&#xA;Aula 02 - Introdução a Inteligência Artificial (slide)&#xA;Aula 03 - Conceitos de Ciência de Dados (slide)&#xA;Listas de Exercício Lista 00 - Conceitos de IA e Ciência de Dados Lista 01 - Exercícios de Python Lista 02 Lista 03 Lista 04 Projeto de Pesquisa Normas do Trabalho Obs.</description>
     </item>
-    
     <item>
       <title>Material Disciplina de Redes Neurais</title>
-      <link>https://jodavid.github.io/subject-materials/posts/redesneurais/</link>
+      <link>http://localhost:4321/subject-materials/posts/redesneurais/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://jodavid.github.io/subject-materials/posts/redesneurais/</guid>
-      <description>Essa página tem como objetivo deixar disponível o material da disciplina de Redes Neurais ministrada pelo Profº Jodavid Ferreira no curso de Estatística na Universidade Federal de Pernambuco - UFPE.
-  Aula 01 - Apresentação da disciplina (slide)
-  Aula 02 - Introdução a Inteligência Artificial (slide)
-  Aula 03 - Introdução ao básico de Python (slide)
-  Aula 04 - Análise Exploratória de Dados com Python (slide)</description>
+      <guid>http://localhost:4321/subject-materials/posts/redesneurais/</guid>
+      <description>Essa página tem como objetivo deixar disponível o material da disciplina de Redes Neurais ministrada pelo Profº Jodavid Ferreira no curso de Estatística na Universidade Federal de Pernambuco - UFPE.&#xA;Aula 01 - Apresentação da disciplina (slide)&#xA;Aula 02 - Introdução a Inteligência Artificial (slide)&#xA;Aula 03 - Introdução ao básico de Python (slide)&#xA;Aula 04 - Análise Exploratória de Dados com Python (slide)&#xA;Atividade para 25.04.2024 Atividade para 25.</description>
     </item>
-    
     <item>
       <title>Slides e Materiais de Ensino</title>
-      <link>https://jodavid.github.io/subject-materials/posts/ensino/</link>
+      <link>http://localhost:4321/subject-materials/posts/ensino/</link>
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://jodavid.github.io/subject-materials/posts/ensino/</guid>
-      <description>Disciplinas  Introdução à Ciência de Dados   Redes Neurais  </description>
+      <guid>http://localhost:4321/subject-materials/posts/ensino/</guid>
+      <description>Disciplinas Introdução à Ciência de Dados Redes Neurais </description>
     </item>
-    
     <item>
       <title>utilizando uma barra de progressão em laços/funções no R</title>
-      <link>https://jodavid.github.io/subject-materials/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</link>
+      <link>http://localhost:4321/subject-materials/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</link>
       <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jodavid.github.io/subject-materials/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</guid>
-      <description>Em vários casos temos laços que não temos o conhecimento do progresso do processo, se está no início, se já está próximo de acabar, então neste post será abordado de uma forma simples como adicionar uma barra de progressão em seus laços e consequetemente acompanhar o andamento de seus processos sejam elas apenas os laços ou dentro de funções.
-Antes de mostrar a solução com a barra de progressão, é possível levantar o questionamento de existe uma outra forma de acompanhar o progresso do processo.</description>
+      <guid>http://localhost:4321/subject-materials/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</guid>
+      <description>Em vários casos temos laços que não temos o conhecimento do progresso do processo, se está no início, se já está próximo de acabar, então neste post será abordado de uma forma simples como adicionar uma barra de progressão em seus laços e consequetemente acompanhar o andamento de seus processos sejam elas apenas os laços ou dentro de funções.&#xA;Antes de mostrar a solução com a barra de progressão, é possível levantar o questionamento de existe uma outra forma de acompanhar o progresso do processo.</description>
     </item>
-    
     <item>
       <title>refresh de um script R com Crontab</title>
-      <link>https://jodavid.github.io/subject-materials/posts/refresh-de-um-script-r-com-crontab/</link>
+      <link>http://localhost:4321/subject-materials/posts/refresh-de-um-script-r-com-crontab/</link>
       <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jodavid.github.io/subject-materials/posts/refresh-de-um-script-r-com-crontab/</guid>
-      <description>Este post será breve e com um objetivo específico. Vamos criar um refessh em um script R com o Crontab, entretanto, esse refresh como mencionado nesse post, nada mais é do que um agendamento de tarefas, no qual o Crontab irá executar a tarefa agendada, toda vez que a condição especificada ocorer.
-O que é Crontab? “O Cron é utilizado para agendar tarefas recorrentes, as tarefas são chamadas de cronjobs e são gerenciadas pelo crontab (tabela do cron).</description>
+      <guid>http://localhost:4321/subject-materials/posts/refresh-de-um-script-r-com-crontab/</guid>
+      <description>Este post será breve e com um objetivo específico. Vamos criar um refessh em um script R com o Crontab, entretanto, esse refresh como mencionado nesse post, nada mais é do que um agendamento de tarefas, no qual o Crontab irá executar a tarefa agendada, toda vez que a condição especificada ocorer.&#xA;O que é Crontab? “O Cron é utilizado para agendar tarefas recorrentes, as tarefas são chamadas de cronjobs e são gerenciadas pelo crontab (tabela do cron).</description>
     </item>
-    
     <item>
       <title>gráfico no R utilizando Malhas e Leaflet</title>
-      <link>https://jodavid.github.io/subject-materials/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</link>
+      <link>http://localhost:4321/subject-materials/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://jodavid.github.io/subject-materials/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</guid>
-      <description>Neste post vamos abordar a criação de um gráfico utilizando malhas digitais e Leaflet com intuito de analisar visualmente um problema em questão que envolva análise com mapas e dados de área.
-Dados de área: são dados obtidos quando a ocorrência de um fenômeno em estudo se dá em uma área geográfica aleatória, por exemplo, áreas de incidência de alguma endemia ou epidemia. Na prática, estes dados são associados a levantamentos de recursos humanos, como censos e estatísticas da saúde.</description>
+      <guid>http://localhost:4321/subject-materials/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</guid>
+      <description>Neste post vamos abordar a criação de um gráfico utilizando malhas digitais e Leaflet com intuito de analisar visualmente um problema em questão que envolva análise com mapas e dados de área.&#xA;Dados de área: são dados obtidos quando a ocorrência de um fenômeno em estudo se dá em uma área geográfica aleatória, por exemplo, áreas de incidência de alguma endemia ou epidemia. Na prática, estes dados são associados a levantamentos de recursos humanos, como censos e estatísticas da saúde.</description>
     </item>
-    
+    <item>
+      <title></title>
+      <link>http://localhost:4321/subject-materials/posts/covid/plot_estado_site/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/subject-materials/posts/covid/plot_estado_site/</guid>
+      <description>&lt;!DOCTYPE html&gt; leaflet </description>
+    </item>
+    <item>
+      <title></title>
+      <link>http://localhost:4321/subject-materials/posts/gerando-um-mapa-com-geobr-no-r/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/subject-materials/posts/gerando-um-mapa-com-geobr-no-r/</guid>
+      <description>Neste Post vamos gerar dois mapas com pacote geobr, com intiuto de mostrar o potêncial do pacote que pode gerar análises muito maiores do que os mostrados nesse post.&#xA;geobr é um pacote computacional para download de conjuntos de dados espaciais oficiais do Brasil. O pacote inclui uma ampla gama de dados geoespaciais em formato de geopacote (como shapefiles), disponíveis em várias escalas geográficas e por vários anos com atributos harmonizados, projeção e topologia.</description>
+    </item>
   </channel>
 </rss>
