@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Categories on Blog do Joda</title>
-    <link>https://jodavid.github.io/jodavid-blog/categories/</link>
-    <description>Recent content in Categories on Blog do Joda</description>
+    <title>Categories on Materiais de Ensino</title>
+    <link>https://jodavid.github.io/subject-materials/categories/</link>
+    <description>Recent content in Categories on Materiais de Ensino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jodavid.github.io/jodavid-blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jodavid.github.io/subject-materials/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>R</title>
-      <link>https://jodavid.github.io/jodavid-blog/categories/r/</link>
+      <link>https://jodavid.github.io/subject-materials/categories/r/</link>
       <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://jodavid.github.io/jodavid-blog/categories/r/</guid>
+      <guid>https://jodavid.github.io/subject-materials/categories/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>leaflet</title>
-      <link>https://jodavid.github.io/jodavid-blog/categories/leaflet/</link>
+      <link>https://jodavid.github.io/subject-materials/categories/leaflet/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://jodavid.github.io/jodavid-blog/categories/leaflet/</guid>
+      <guid>https://jodavid.github.io/subject-materials/categories/leaflet/</guid>
       <description></description>
     </item>
     

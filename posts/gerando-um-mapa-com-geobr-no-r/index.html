@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content=""
+  />
+  
+    
+      <title> | Materiais de Ensino</title>
+    
+  
+  <link rel="stylesheet" href="/subject-materials/css/reset.css"/>
+  <link rel="stylesheet" href="/subject-materials/css/font.css"/>
+  <link rel="stylesheet" href="/subject-materials/css/smigle.css"/>
+  
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+</head>
+
+  <body>
+    <div id="root">
+      <header>
+  <div id="brand">
+    <a class="icon-link" href="https://jodavid.github.io/subject-materials/">
+      <img
+        class="icon"
+        src="/subject-materials/images/brandIcon.svg"
+      />
+    </a>
+    <div class="text">
+      <a href="https://jodavid.github.io/subject-materials/"><h1>Materiais de Ensino</h1></a>
+      <h3>Jodavid Ferreira</h3>
+    </div>
+  </div>
+  <nav>
+    
+      
+        
+        <a href="/subject-materials/posts/ensino/"><b>Home</b></a>
+      
+         | 
+        <a href="/subject-materials/posts/introducaoads/"><b>Introdução à Ciência de Dados</b></a>
+      
+         | 
+        <a href="/subject-materials/posts/redesneurais/"><b>Redes Neurais</b></a>
+      
+    
+  </nav>
+  <hr />
+</header>
+
+      <div id="content">
+        
+  <main>
+    <article>
+      <h1 class="title"></h1>
+      
+      <div class="post-meta">
+  <strong>
+    <span>Posted on</span>
+    <time>0001-01-01</time>
+    
+    
+  </strong>
+  <span> • 759 words</span>
+  <span> • 4 minute read</span>
+  
+  
+</div>
+
+      <div class="content">
+
+<p>Neste Post vamos gerar dois mapas com pacote <code>geobr</code>, com intiuto de mostrar
+o potêncial do pacote que pode gerar análises muito maiores do que os mostrados
+nesse post.</p>
+<blockquote>
+<p>geobr é um pacote computacional para download de conjuntos de dados espaciais oficiais do Brasil. O pacote inclui uma ampla gama de dados geoespaciais em formato de geopacote (como shapefiles), disponíveis em várias escalas geográficas e por vários anos com atributos harmonizados, projeção e topologia.</p>
+</blockquote>
+<p>O texto acima foi retirado do site do <a href="https://github.com/">github</a> do pacote: <a href="https://github.com/ipeaGIT/geobr">https://github.com/ipeaGIT/geobr</a>.</p>
+<p>Como exemplo simples, vamos gerar um primeiro mapas de frequências utilizando os estados do Brasil, para isso vamos gerar uma amostra de tamanho 1.000 (escolhido aleatóriamente) dos 27 estados do país.</p>
+<p>Lista dos estados do Brasil (BR):</p>
+<ul>
+<li>Acre - AC;</li>
+<li>Alagoas - AL;</li>
+<li>Amapá - AP;</li>
+<li>Amazonas - AM;</li>
+<li>Bahia - BA;</li>
+<li>Ceará - CE;</li>
+<li>Distrito Federal - DF;</li>
+<li>Espírito Santo - ES;</li>
+<li>Goiás - GO;</li>
+<li>Maranhão - MA;</li>
+<li>Mato Grosso - MT;</li>
+<li>Mato Grosso do Sul - MS;</li>
+<li>Minas Gerais - MG;</li>
+<li>Pará - PA;</li>
+<li>Paraíba - PB;</li>
+<li>Paraná - PR;</li>
+<li>Pernambuco - PE;</li>
+<li>Piauí - PI;</li>
+<li>Roraima - RR;</li>
+<li>Rondônia - RO;</li>
+<li>Rio de Janeiro - RJ;</li>
+<li>Rio Grande do Norte - RN;</li>
+<li>Rio Grande do Sul - RS;</li>
+<li>Santa Catarina - SC;</li>
+<li>São Paulo - SP;</li>
+<li>Sergipe - SE;</li>
+<li>Tocantins - TO.</li>
+</ul>
+<pre class="r"><code># Estados
+estados &lt;- c(&quot;AC&quot;, &quot;AL&quot;, &quot;AP&quot;, &quot;AM&quot;, &quot;BA&quot;, &quot;CE&quot;, &quot;DF&quot;, &quot;ES&quot;,
+             &quot;GO&quot;, &quot;MA&quot;, &quot;MT&quot;, &quot;MS&quot;, &quot;MG&quot;, &quot;PA&quot;, &quot;PB&quot;, &quot;PR&quot;,
+             &quot;PE&quot;, &quot;PI&quot;, &quot;RR&quot;, &quot;RO&quot;, &quot;RJ&quot;, &quot;RN&quot;, &quot;RS&quot;, &quot;SC&quot;,
+             &quot;SP&quot;, &quot;SE&quot;, &quot;TO&quot;)
+# Verificando se existem 27 estados
+length(estados)</code></pre>
+<pre><code>## [1] 27</code></pre>
+<pre class="r"><code># Criando uma amostra de tamanho 1.000
+
+amostra &lt;- sample(x = estados, size = 1000, replace = TRUE)
+
+# Verificando as frequências em cada estado
+
+table(amostra)</code></pre>
+<pre><code>## amostra
+## AC AL AM AP BA CE DF ES GO MA MG MS MT PA PB PE PI PR RJ RN RO RR RS SC SE SP 
+## 36 40 43 39 28 38 36 44 39 37 30 38 30 44 37 39 42 40 40 51 37 24 43 33 31 31 
+## TO 
+## 30</code></pre>
+<p>Em geral ficou uma amostra uniforme, em torno da frequẽncia 35. Vamos agora chamar a biblioteca e gerar o mapa usando o <code>geobr</code>.</p>
+<pre class="r"><code># Instalando o &#39;geobr&#39;
+remotes::install_github(&quot;ipeaGIT/geobr&quot;, subdir = &quot;r-package&quot;)</code></pre>
+<p>No Debian/Ubuntu, foi necessário instalar a <code>libudunits2-dev</code> no terminal do linux;</p>
+<pre class="bash"><code># No Teminal Linux
+apt install libudunits2-dev
+</code></pre>
+<p>Após a instalação da biblioteca no Sistema operacional, foi utilizado o comando para instalar o pacote novamente e se tudo ocorreu como esperado, o pacote foi instalado com sucesso!</p>
+<p>Abaixo vamos seguir com o código da geração do mapa</p>
+<pre class="r"><code># Lendo as bibliotecas
+library(geobr) # Necessárias para os dados dos mapas
+library(dplyr) # Necessária para manipulação dos dados
+
+# Convertendo a amostra em tibble
+amostra &lt;- as_tibble(amostra)
+
+# Agrupando os dados dos estados
+dados_estados &lt;- amostra %&gt;%
+                  mutate(abbrev_state = factor(value)) %&gt;% 
+                  group_by(abbrev_state) %&gt;% 
+                  summarise(n = n())
+
+# Fazendo left_join das informações do geobr com os dados
+dados_mapa &lt;- read_state(year=2019, showProgress = FALSE) %&gt;% 
+              left_join(dados_estados)</code></pre>
+<p>Gerando o mapa utilizando a frequência gerada pelo prórpio <code>ggplot</code>:</p>
+<pre class="r"><code># Pacote ggplot2
+library(ggplot2)
+
+
+# Código do MAPA
+dados_mapa %&gt;%
+  ggplot() +
+  geom_sf(aes(fill = n)) +
+  labs(title = &quot;Mapa Brasil&quot;, fill = &quot;Frequência&quot;)+
+  theme_minimal()+
+  theme(axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank())</code></pre>
+<p><img src="/posts/Gerando%20um%20Mapa%20com%20geobr%20no%20R_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Criando um intervalo e fazendo o gráfico de acordo com a legenda criada:</p>
+<pre class="r"><code># Descobrindo o maximo e minimo para definir a quantidade de intervalos
+max(dados_mapa$n) # Calculando o máximo</code></pre>
+<pre><code>## [1] 51</code></pre>
+<pre class="r"><code>min(dados_mapa$n) # Calculando o mínimo</code></pre>
+<pre><code>## [1] 24</code></pre>
+<pre class="r"><code>max(dados_mapa$n) - min(dados_mapa$n) # Diferença</code></pre>
+<pre><code>## [1] 27</code></pre>
+<pre class="r"><code># Por questão de facilidade vamos dividir em 3 categorias:
+# 1 - Frequência de menos de 20;
+# 2 - Frequência de 20 a 30;
+# 3 - Frequência de 30 ou mais;
+
+#Criando os Intervalos para a Legenda
+classes = c(-Inf, 20, 31, Inf)
+classes_plot &lt;- findInterval(dados_mapa$n,classes)
+
+# Criar legenda
+legenda =  c(&#39;menos de 20&#39;,
+             &#39;20 |-- 30 &#39;,
+             &#39;mais de 30&#39;)
+
+cores = c(&quot;#e9e57f&quot;,
+          &quot;#cda300&quot;,
+          &quot;#a46500&quot;)
+
+
+# Adicionando a coluna classes_plot no tibble dados_mapa
+
+dados_mapa &lt;- dados_mapa %&gt;% 
+              mutate(classes_plot = factor(classes_plot))
+
+# Código do MAPA
+dados_mapa %&gt;%
+  ggplot() +
+  geom_sf(aes(fill = classes_plot), color = &quot;black&quot;) +
+  labs(title = &quot;Mapa Brasil&quot;, fill = &quot;Frequência Criada&quot;)+
+  scale_fill_manual(labels = legenda,
+                    values = cores)+ 
+  theme_minimal()+
+  theme(axis.title = element_blank(),
+        axis.text = element_blank(),
+        axis.ticks = element_blank(),
+        panel.grid = element_blank())</code></pre>
+<p><img src="/posts/Gerando%20um%20Mapa%20com%20geobr%20no%20R_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>Com esses códigos são possíveis a criação de mapas utilizando frequências usando o pacote <code>geobr</code>.</p>
+<p>Fontes:</p>
+<p><a href="https://www.instagram.com/p/CMDauKFgsJo/?utm_source=ig_web_copy_link">Instagram: programando_em_r</a></p>
+<p><br/>
+<br/>
+<br/></p>
+<div id="post-gerado-com-framework-hugo-httpgohugo.io-r-markdown-httprmarkdown.rstudio.com-no-qual-os-resultados-são-gerados-na-geração-da-página." class="section level4">
+<h4>“Post gerado com framework HUGO (<a href="http://gohugo.io/">http://gohugo.io/</a>), R Markdown (<a href="http://rmarkdown.rstudio.com/">http://rmarkdown.rstudio.com/</a>), no qual os resultados são gerados na geração da página.”</h4>
+</div>
+</div>
+    </article>
+  </main>
+
+      </div>
+      <footer>
+  <hr />
+  
+  <p class="copyright">
+    Copyright © 2024
+    <a href="https://jodavid.github.io/subject-materials/"><strong>Jodavid Ferreira</strong></a>.
+    This work is licensed under the
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> license.
+  </p>
+  <p class="builtWith">
+    Built with
+    <a href="http://www.gohugo.io/">Hugo</a>,
+    using the theme
+    <a href="https://gitlab.com/ian-s-mcb/smigle-hugo-theme">smigle</a>,
+    which was influenced by the theme
+    <a href="https://github.com/sumnerevans/smol">smol</a>.
+  </p>
+</footer>
+
+    </div>
+  </body>
+</html>

@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on Blog do Joda</title>
-    <link>https://jodavid.github.io/jodavid-blog/tags/</link>
-    <description>Recent content in Tags on Blog do Joda</description>
+    <title>Tags on Materiais de Ensino</title>
+    <link>https://jodavid.github.io/subject-materials/tags/</link>
+    <description>Recent content in Tags on Materiais de Ensino</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>pt-BR</language>
-    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jodavid.github.io/jodavid-blog/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 05 Aug 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://jodavid.github.io/subject-materials/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>R</title>
-      <link>https://jodavid.github.io/jodavid-blog/tags/r/</link>
+      <link>https://jodavid.github.io/subject-materials/tags/r/</link>
       <pubDate>Thu, 05 Aug 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://jodavid.github.io/jodavid-blog/tags/r/</guid>
+      <guid>https://jodavid.github.io/subject-materials/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>contrab</title>
-      <link>https://jodavid.github.io/jodavid-blog/tags/contrab/</link>
+      <link>https://jodavid.github.io/subject-materials/tags/contrab/</link>
       <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://jodavid.github.io/jodavid-blog/tags/contrab/</guid>
+      <guid>https://jodavid.github.io/subject-materials/tags/contrab/</guid>
       <description></description>
     </item>
     
     <item>
       <title>linux</title>
-      <link>https://jodavid.github.io/jodavid-blog/tags/linux/</link>
+      <link>https://jodavid.github.io/subject-materials/tags/linux/</link>
       <pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://jodavid.github.io/jodavid-blog/tags/linux/</guid>
+      <guid>https://jodavid.github.io/subject-materials/tags/linux/</guid>
       <description></description>
     </item>
     
     <item>
       <title>covid</title>
-      <link>https://jodavid.github.io/jodavid-blog/tags/covid/</link>
+      <link>https://jodavid.github.io/subject-materials/tags/covid/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://jodavid.github.io/jodavid-blog/tags/covid/</guid>
+      <guid>https://jodavid.github.io/subject-materials/tags/covid/</guid>
       <description></description>
     </item>
     
     <item>
       <title>shapes</title>
-      <link>https://jodavid.github.io/jodavid-blog/tags/shapes/</link>
+      <link>https://jodavid.github.io/subject-materials/tags/shapes/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://jodavid.github.io/jodavid-blog/tags/shapes/</guid>
+      <guid>https://jodavid.github.io/subject-materials/tags/shapes/</guid>
       <description></description>
     </item>
     

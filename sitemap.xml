@@ -2,46 +2,55 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jodavid.github.io/jodavid-blog/</loc>
+    <loc>https://jodavid.github.io/subject-materials/</loc>
+    <lastmod>2024-04-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jodavid.github.io/subject-materials/posts/introducaoads/</loc>
+    <lastmod>2024-04-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jodavid.github.io/subject-materials/posts/redesneurais/</loc>
+    <lastmod>2024-04-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jodavid.github.io/subject-materials/posts/</loc>
+    <lastmod>2024-04-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jodavid.github.io/subject-materials/posts/ensino/</loc>
+    <lastmod>2024-04-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://jodavid.github.io/subject-materials/categories/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/categories/</loc>
+    <loc>https://jodavid.github.io/subject-materials/tags/r/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/posts/</loc>
+    <loc>https://jodavid.github.io/subject-materials/categories/r/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/tags/r/</loc>
+    <loc>https://jodavid.github.io/subject-materials/tags/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/categories/r/</loc>
+    <loc>https://jodavid.github.io/subject-materials/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</loc>
     <lastmod>2021-08-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/tags/</loc>
-    <lastmod>2021-08-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/posts/2021-08-05-utilizando-uma-barra-de-progress%C3%A3o-em-la%C3%A7os-fun%C3%A7%C3%B5es-no-r/</loc>
-    <lastmod>2021-08-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/tags/contrab/</loc>
+    <loc>https://jodavid.github.io/subject-materials/tags/contrab/</loc>
     <lastmod>2021-02-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/tags/linux/</loc>
+    <loc>https://jodavid.github.io/subject-materials/tags/linux/</loc>
     <lastmod>2021-02-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/posts/refresh-de-um-script-r-com-crontab/</loc>
+    <loc>https://jodavid.github.io/subject-materials/posts/refresh-de-um-script-r-com-crontab/</loc>
     <lastmod>2021-02-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/tags/covid/</loc>
+    <loc>https://jodavid.github.io/subject-materials/tags/covid/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</loc>
+    <loc>https://jodavid.github.io/subject-materials/posts/gr%C3%A1fico-no-r-utilizando-malhas-e-leaflet/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/categories/leaflet/</loc>
+    <loc>https://jodavid.github.io/subject-materials/categories/leaflet/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://jodavid.github.io/jodavid-blog/tags/shapes/</loc>
+    <loc>https://jodavid.github.io/subject-materials/tags/shapes/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url>
 </urlset>
